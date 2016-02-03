@@ -41,7 +41,7 @@ describe Contact do
     expect(contact.errors[:email]).to include('has already been taken')
   end
 
-  # =================== Contact method ===================
+  # =================== instance method ===================
   it 'returns a contact\'s full name as a string' do
     contact = Contact.new(firstname: 'Joseph', lastname: 'Joestar',
       email: 'joestars@jojo.com')
