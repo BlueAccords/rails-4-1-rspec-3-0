@@ -9,7 +9,7 @@ describe Contact do
   end
 # ================ CONTACT VALIDATION ================
   it "is valid with a firstname, lastname, and email" do
-        contact = Contact.new(
+        contact = build(:contact,
       firstname: "Aaron",
       lastname: "Summer",
       email: "tester@example.com")
@@ -46,6 +46,10 @@ describe Contact do
     expect(contact.errors[:email]).to include("has already been taken")
   end
 
+  it "has three phone numbers" do
+    expect(create(:contact).phones.count).to eq 3
+  end
+
   # =================== instance method ===================
   it "returns a contact's full name as a string" do
     contact = build(:contact, 
@@ -59,17 +63,17 @@ describe Contact do
   # ==================== Query Tests =====================
   describe "filter last name by letter" do
     before :each do
-      @smith = Contact.create(
+      @smith = create(:contact,
         firstname: "John",
         lastname: "Smith",
         email: "jsmith@example.com"
       )
-      @jones = Contact.create(
+      @jones = create(:contact,
         firstname: "Tim",
         lastname: "Jones",
         email: "tjones@example.com"
       )
-      @johnson = Contact.create(
+      @johnson = create(:contact,
         firstname: "John",
         lastname: "Johnson",
         email: "jjohnson@example.com"
