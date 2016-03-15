@@ -35,12 +35,11 @@ describe Contact do
   end
 
   it "is invalid with a duplicate email address" do
-    Contact.create(
-      firstname: "Billy", lastname: "Jones",
+    # create used here to persist the contact in the database
+    FactoryGirl.create(:contact,
       email: "myemail@mail.com"
     )
-    contact = Contact.new(
-      firstname: "Kevin", lastname: "King",
+    contact = FactoryGirl.build(:contact,
       email: "myemail@mail.com"
     )
     contact.valid?
@@ -52,7 +51,7 @@ describe Contact do
     contact = FactoryGirl.build(:contact, 
         firstname: "Joseph", 
         lastname: "Joestar",
-    )
+    ) 
 
     expect(contact.name).to eq "Joseph Joestar"
   end
